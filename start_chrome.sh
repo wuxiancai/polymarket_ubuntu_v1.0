@@ -31,7 +31,7 @@ start_chrome() {
         --disable-renderer-backgrounding \
         --remote-debugging-port=9222 \
         --user-data-dir="$HOME/.config/google-chrome" \
-        --start-maximized \
+        
         "$@"  # 传入任何额外的命令行参数
 }
 
