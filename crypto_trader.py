@@ -162,8 +162,42 @@ class CryptoTrader:
         
         # 创建并配置样式
         style = ttk.Style()
-        style.configure('Red.TButton', foreground='red')
-        style.configure('Black.TButton', foreground='black')
+        
+        # 打印当前主题信息用于调试
+        print("Available themes:", style.theme_names())
+        print("Current theme:", style.theme_use())
+        
+        # 尝试使用clam主题，它在所有平台上表现更一致
+        try:
+            style.theme_use('clam')
+        except tk.TclError:
+            pass
+        
+        # 更详细的样式配置
+        style.configure('Red.TButton',
+            foreground='red',
+            background='white',
+            font=('Arial', 10),
+            relief='raised'
+        )
+        
+        style.configure('Black.TButton',
+            foreground='black',
+            background='white',
+            font=('Arial', 10),
+            relief='raised'
+        )
+        
+        # 配置鼠标悬停样式
+        style.map('Red.TButton',
+            foreground=[('disabled', 'grey'), ('active', 'dark red')],
+            background=[('active', 'white')]
+        )
+        
+        style.map('Black.TButton',
+            foreground=[('disabled', 'grey'), ('active', 'black')],
+            background=[('active', 'white')]
+        )
         
         # 创建主滚动框架
         main_canvas = tk.Canvas(self.root)
@@ -778,14 +812,19 @@ class CryptoTrader:
     def stop_monitoring(self):
         """停止监控"""
         self.running = False
-        self.start_button['state'] = 'normal'
-        self.stop_button['state'] = 'disabled'
-        self.update_amount_button['state'] = 'disabled'  # 禁用更新金额按钮
         
-        # 将"停止监控"文字变为红色
+        # 更新按钮状态和样式
         self.stop_button.configure(style='Red.TButton')
-        # 恢复"开始监控"文字为黑色
+        self.stop_button['state'] = 'disabled'
+        
         self.start_button.configure(style='Black.TButton')
+        self.start_button['state'] = 'normal'
+        
+        self.update_amount_button['state'] = 'disabled'
+        
+        # 强制更新样式
+        self.root.update_idletasks()
+        
         if self.driver:
             self.driver.quit()
             self.driver = None
@@ -1509,7 +1548,7 @@ class CryptoTrader:
             self.update_status(f"点击 Sell-Yes-Max 按钮失败: {str(e)}")
 
     def click_sell_no_max(self):
-        """点击 Sell-No-Max 按钮"""
+        """点击 Sell-No-Max 按���"""
         try:
             if not self.driver:
                 self.update_status("请先连接浏览器")
@@ -2109,7 +2148,7 @@ class CryptoTrader:
                     self.buy_confirm_button.invoke()
                     time.sleep(1)
                     self._handle_metamask_popup()
-                    """因为网站的原因，必须刷新多次页面，否则会报错，故不能删除或者合并以下等待和刷新代码"""
+                    """因为网站的��因，��须刷新多次页面，否则会报错，故不能删除或者合并以下等待和刷新代码"""
                     # 等待6秒
                     time.sleep(6)
                     self.driver.refresh()
