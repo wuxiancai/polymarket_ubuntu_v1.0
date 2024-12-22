@@ -15,7 +15,7 @@ start_chrome() {
     if ! command -v chromedriver &> /dev/null; then
         echo "错误: ChromeDriver未安装"
         exit 1
-    }
+    fi
     
     # 启动ChromeDriver
     chromedriver --port=9515 &
