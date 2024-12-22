@@ -160,43 +160,32 @@ class CryptoTrader:
         self.root = tk.Tk()
         self.root.title("Polymarket自动交易")
         
-        # 创建并配置样式
+        # 创建并配置样式 - 只保留这一处style配置
         style = ttk.Style()
         
         # 打印当前主题信息用于调试
         print("Available themes:", style.theme_names())
         print("Current theme:", style.theme_use())
         
-        # 尝试使用clam主题，它在所有平台上表现更一致
+        # 尝试使用clam主题
         try:
             style.theme_use('clam')
         except tk.TclError:
             pass
         
-        # 更详细的样式配置
-        style.configure('Red.TButton',
-            foreground='red',
-            background='white',
-            font=('Arial', 10),
-            relief='raised'
-        )
-        
+        # 配置按钮样式
         style.configure('Black.TButton',
             foreground='black',
             background='white',
-            font=('Arial', 10),
+            font=('Arial', 10, 'bold'),  # 加粗显示
             relief='raised'
         )
         
-        # 配置鼠标悬停样式
-        style.map('Red.TButton',
-            foreground=[('disabled', 'grey'), ('active', 'dark red')],
-            background=[('active', 'white')]
-        )
-        
-        style.map('Black.TButton',
-            foreground=[('disabled', 'grey'), ('active', 'black')],
-            background=[('active', 'white')]
+        style.configure('Red.TButton',
+            foreground='#FF0000',  # 使用更鲜艳的红色
+            background='white',
+            font=('Arial', 10, 'bold'),  # 加粗显示
+            relief='raised'
         )
         
         # 创建主滚动框架
@@ -713,13 +702,18 @@ class CryptoTrader:
         self.start_button['state'] = 'disabled'
         self.stop_button['state'] = 'normal'
         
-        # 将"开始监控"文字变为红色
+        # 更新按钮状态和样式
         self.start_button.configure(style='Red.TButton')
-        # 恢复"停止监控"文字为黑色
+        self.start_button['state'] = 'disabled'
+        
         self.stop_button.configure(style='Black.TButton')
+        self.stop_button['state'] = 'normal'
         
         # 启用更金额按钮
         self.update_amount_button['state'] = 'normal'
+        
+        # 强制更新GUI
+        self.root.update()
         
         # 13秒后自动点击更新金额按钮
         self.root.after(13000, self.update_amount_button.invoke)
@@ -822,8 +816,8 @@ class CryptoTrader:
         
         self.update_amount_button['state'] = 'disabled'
         
-        # 强制更新样式
-        self.root.update_idletasks()
+        # 强制更新GUI
+        self.root.update()
         
         if self.driver:
             self.driver.quit()
@@ -1534,7 +1528,7 @@ class CryptoTrader:
         """点击 Sell-Yes-Max 按钮"""
         try:
             if not self.driver:
-                self.update_status("请先连接浏览器")
+                self.update_status("请���连接浏览器")
                 return
             
             button = WebDriverWait(self.driver, 10).until(
@@ -1578,9 +1572,9 @@ class CryptoTrader:
             # 找到输入框
             amount_input = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((By.XPATH, '//*[@id="event-layout-with-side-nav"]/div[2]/div/div[1]/div/div[2]/div[2]/div[2]/input'))
-            )# //input[@class="c-ecshmo c-ecshmo-ielLCmU-css"]
             # 清空输入框
             amount_input.clear()
+            
             # 根据按钮文本获取对应的金额
             if button_text == "Amount-Yes0":
                 amount = self.yes_amount_entry.get()
