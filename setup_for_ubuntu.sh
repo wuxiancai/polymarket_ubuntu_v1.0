@@ -52,6 +52,9 @@ echo "安装Python依赖..."
 pip3 install requests pandas numpy python-binance websocket-client selenium pyautogui
 check_result "安装Python依赖失败"
 
+# 清理旧的安装文件（如果存在）
+rm -f LATEST_RELEASE_* chromedriver_linux64.zip
+
 # 安装Chrome
 echo "安装Chrome浏览器..."
 if ! command -v google-chrome &> /dev/null; then
@@ -60,8 +63,6 @@ if ! command -v google-chrome &> /dev/null; then
     wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
     sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
     sudo apt update
-    
-    # 安装Chrome
     sudo apt install -y google-chrome-stable
     check_result "安装Chrome失败"
 else
@@ -71,12 +72,19 @@ fi
 # 安装ChromeDriver
 echo "安装ChromeDriver..."
 if ! command -v chromedriver &> /dev/null; then
-    echo "尝试使用apt安装ChromeDriver..."
+    # 先尝试安装chromium-chromedriver
+    echo "尝试安装chromium-chromedriver..."
     sudo apt install -y chromium-chromedriver
     
-    # 如果apt安装失败，尝试使用snap
+    # 如果上面失败，尝试安装chromium-browser
     if ! command -v chromedriver &> /dev/null; then
-        echo "apt安装失败，尝试使用snap安装..."
+        echo "尝试安装chromium-browser..."
+        sudo apt install -y chromium-browser
+    fi
+    
+    # 如果apt安装都失败，尝试使用snap
+    if ! command -v chromedriver &> /dev/null; then
+        echo "尝试使用snap安装chromium..."
         sudo snap install chromium
         if [ -f "/snap/bin/chromium.chromedriver" ]; then
             sudo ln -sf /snap/bin/chromium.chromedriver /usr/local/bin/chromedriver
