@@ -159,6 +159,12 @@ class CryptoTrader:
     def setup_gui(self):
         self.root = tk.Tk()
         self.root.title("Polymarket自动交易")
+        
+        # 创建并配置样式
+        style = ttk.Style()
+        style.configure('Red.TButton', foreground='red')
+        style.configure('Black.TButton', foreground='black')
+        
         # 创建主滚动框架
         main_canvas = tk.Canvas(self.root)
         scrollbar = ttk.Scrollbar(self.root, orient="vertical", command=main_canvas.yview)
@@ -282,12 +288,12 @@ class CryptoTrader:
         # 开始和停止按钮
         self.start_button = ttk.Button(button_frame, text="开始监控", 
                                           command=self.start_monitoring, width=20,
-                                          style='Black.TButton')  # 默认使用黑色文字
+                                          style='Black.TButton')  # 默认黑色
         self.start_button.pack(side=tk.LEFT, padx=5)
         
         self.stop_button = ttk.Button(button_frame, text="停止监控", 
                                      command=self.stop_monitoring, width=20,
-                                     style='Black.TButton')  # 默认使用黑色文字
+                                     style='Black.TButton')  # 默认黑色
         self.stop_button.pack(side=tk.LEFT, padx=5)
         self.stop_button['state'] = 'disabled'
         
@@ -778,7 +784,7 @@ class CryptoTrader:
         
         # 将"停止监控"文字变为红色
         self.stop_button.configure(style='Red.TButton')
-        # 恢复"开始监控"文字为白色
+        # 恢复"开始监控"文字为黑色
         self.start_button.configure(style='Black.TButton')
         if self.driver:
             self.driver.quit()
