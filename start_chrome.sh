@@ -25,7 +25,6 @@ chromedriver --port=9515 &
 "$CHROME_PATH" \
     --remote-debugging-port=9222 \
     --user-data-dir="$HOME/ChromeDebug" \
-    --no-sandbox \
     --disable-gpu \
     https://polymarket.com/markets/crypto
 
