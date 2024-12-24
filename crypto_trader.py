@@ -432,7 +432,7 @@ class CryptoTrader:
             # 设置默认价格为0.00
             getattr(self, f'yes{i+1}_price_entry').delete(0, tk.END)
             getattr(self, f'yes{i+1}_price_entry').insert(0, "0.00")
-            # 创建金额输入框
+            # 创建金额输入框及设置默认金额为 0.0
             ttk.Label(self.yes_frame, text=f"Yes {i+1} 金额:", font=('Arial', 12)).grid(row=i*2+3, column=0, padx=5, pady=5)
             amount_entry = ttk.Entry(self.yes_frame)
             amount_entry.insert(0, "0.0")
