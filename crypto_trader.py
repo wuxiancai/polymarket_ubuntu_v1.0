@@ -175,14 +175,14 @@ class CryptoTrader:
         
         # 配置按钮样式
         style.configure('Black.TButton',
-            foreground='black',
+            foreground='blue', # 默认蓝色文字
             background='white',
             font=('Arial', 10, 'bold'),  # 加粗显示
             relief='raised'
         )
         
         style.configure('Red.TButton',
-            foreground='#FF0000',  # 使用更鲜艳的红色
+            foreground='red',  # 使用更鲜艳的红色
             background='white',
             font=('Arial', 10, 'bold'),  # 加粗显示
             relief='raised'
@@ -241,8 +241,8 @@ class CryptoTrader:
         scrollbar.pack(side="right", fill="y")
         
         # 金额设置框架
-        amount_settings_frame = ttk.LabelFrame(scrollable_frame, text="金额设置", padding=(10, 5))
-        amount_settings_frame.pack(fill="x", padx=10, pady=5)
+        amount_settings_frame = ttk.LabelFrame(scrollable_frame, text="金额设置", padding=(5, 5))
+        amount_settings_frame.pack(fill="x", padx=5, pady=5)
         
         # 创建金额设置容器的内部框架
         settings_container = ttk.Frame(amount_settings_frame)
@@ -280,13 +280,13 @@ class CryptoTrader:
         self.root.geometry(f'{window_width}x{window_height}+{x}+{y}')
         
         # 监控网站配置 ()
-        url_frame = ttk.LabelFrame(scrollable_frame, text="监控网站配置", padding=(10, 5))
-        url_frame.pack(fill="x", padx=10, pady=5)
+        url_frame = ttk.LabelFrame(scrollable_frame, text="监控网站配置", padding=(5, 5))
+        url_frame.pack(fill="x", padx=5, pady=5)
         
         ttk.Label(url_frame, text="网站地址:", font=('Arial', 10)).grid(row=0, column=0, padx=5, pady=5)
         
         # 创建下拉列和入框组合控件
-        self.url_entry = ttk.Combobox(url_frame, width=50)
+        self.url_entry = ttk.Combobox(url_frame, width=70)
         self.url_entry.grid(row=0, column=1, padx=5, pady=5, sticky="ew")
         
         # 从配置文件加载历史记录
@@ -301,35 +301,35 @@ class CryptoTrader:
         
         # 在创建按钮之前，添加自定义样式
         style = ttk.Style()
-        style.configure('Black.TButton', foreground='#F0F0F0')  # 默认黑色文字
+        style.configure('Black.TButton', foreground='blue')  # 默认蓝色文字
         style.configure('Red.TButton', foreground='red')  # 保留红色样式用于状态变化
         
         # 控制按钮区域
         button_frame = ttk.Frame(scrollable_frame)
-        button_frame.pack(fill="x", padx=10, pady=5)
+        button_frame.pack(fill="x", padx=5, pady=5)
         
         # 开始和停止按钮
         self.start_button = ttk.Button(button_frame, text="开始监控", 
-                                          command=self.start_monitoring, width=20,
+                                          command=self.start_monitoring, width=10,
                                           style='Black.TButton')  # 默认黑色
         self.start_button.pack(side=tk.LEFT, padx=5)
         
         self.stop_button = ttk.Button(button_frame, text="停止监控", 
-                                     command=self.stop_monitoring, width=20,
+                                     command=self.stop_monitoring, width=10,
                                      style='Black.TButton')  # 默认黑色
         self.stop_button.pack(side=tk.LEFT, padx=5)
         self.stop_button['state'] = 'disabled'
         
         # 更新下单金额按钮
         self.update_amount_button = ttk.Button(button_frame, text="更新下单金额", 
-                                             command=self.set_yes_no_cash, width=20,
+                                             command=self.set_yes_no_cash, width=10,
                                              style='Black.TButton')  # 默认使用黑色文字
         self.update_amount_button.pack(side=tk.LEFT, padx=5)
         self.update_amount_button['state'] = 'disabled'  # 初始禁用
         
         # 交易币对显示区域 (保持在这里)
         pair_frame = ttk.Frame(scrollable_frame)
-        pair_frame.pack(fill="x", padx=10, pady=5)
+        pair_frame.pack(fill="x", padx=5, pady=5)
         
         # 添加交易币对显示区域
         pair_container = ttk.Frame(pair_frame)
@@ -343,8 +343,8 @@ class CryptoTrader:
         self.trading_pair_label.pack(side=tk.LEFT, padx=5)
         
         # 修改实时价格显示区域
-        price_frame = ttk.LabelFrame(scrollable_frame, text="实时价格", padding=(10, 5))
-        price_frame.pack(padx=10, pady=5, fill="x")
+        price_frame = ttk.LabelFrame(scrollable_frame, text="实时价格", padding=(5, 5))
+        price_frame.pack(padx=5, pady=5, fill="x")
         
         # 创建一个框架来水平排列所有价格信息
         prices_container = ttk.Frame(price_frame)
@@ -366,8 +366,8 @@ class CryptoTrader:
         self.last_update_label.pack(side=tk.LEFT, anchor='se', padx=5)
         
         # 修改实时资金显示区域
-        balance_frame = ttk.LabelFrame(scrollable_frame, text="实时资金", padding=(10, 5))
-        balance_frame.pack(padx=10, pady=5, fill="x")
+        balance_frame = ttk.LabelFrame(scrollable_frame, text="实时资金", padding=(5, 5))
+        balance_frame.pack(padx=5, pady=5, fill="x")
         
         # 创建一个框架来水平排列所有资金信息
         balance_container = ttk.Frame(balance_frame)
@@ -397,35 +397,35 @@ class CryptoTrader:
         self.yes_frame.grid(row=0, column=0, padx=5, sticky="ew")
         config_frame.grid_columnconfigure(0, weight=1)
         
-        ttk.Label(self.yes_frame, text="Yes 0 价格($):", font=('Arial', 14)).grid(row=0, column=0, padx=5, pady=5)
+        ttk.Label(self.yes_frame, text="Yes 0 价格($):", font=('Arial', 12)).grid(row=0, column=0, padx=5, pady=5)
         self.yes_price_entry = ttk.Entry(self.yes_frame)
         self.yes_price_entry.insert(0, str(self.config['trading']['Yes0']['target_price']))
         self.yes_price_entry.grid(row=0, column=1, padx=5, pady=5, sticky="ew")
         
-        ttk.Label(self.yes_frame, text="Yes 0 金额:", font=('Arial', 14)).grid(row=1, column=0, padx=5, pady=5)
+        ttk.Label(self.yes_frame, text="Yes 0 金额:", font=('Arial', 12)).grid(row=1, column=0, padx=5, pady=5)
         self.yes_amount_entry = ttk.Entry(self.yes_frame)
         self.yes_amount_entry.insert(0, str(self.config['trading']['Yes0']['amount']))
         self.yes_amount_entry.grid(row=1, column=1, padx=5, pady=5, sticky="ew")
         
         # 修改Yes1-5和No1-5的默认价格值
         for i in range(4):
-            ttk.Label(self.yes_frame, text=f"Yes {i+1} 价格($):", font=('Arial', 14)).grid(row=i*2+2, column=0, padx=5, pady=5)
+            ttk.Label(self.yes_frame, text=f"Yes {i+1} 价格($):", font=('Arial', 12)).grid(row=i*2+2, column=0, padx=5, pady=5)
             price_entry = ttk.Entry(self.yes_frame)
             price_entry.insert(0, "0.00")  # 修改为0.00
             price_entry.grid(row=i*2+2, column=1, padx=5, pady=5, sticky="ew")
             
-            ttk.Label(self.yes_frame, text=f"Yes {i+1} 金额:", font=('Arial', 14)).grid(row=i*2+3, column=0, padx=5, pady=5)
+            ttk.Label(self.yes_frame, text=f"Yes {i+1} 金额:", font=('Arial', 12)).grid(row=i*2+3, column=0, padx=5, pady=5)
             amount_entry = ttk.Entry(self.yes_frame)
             amount_entry.insert(0, "0.0")
             amount_entry.grid(row=i*2+3, column=1, padx=5, pady=5, sticky="ew")
         
         # Yes 5 配置
-        ttk.Label(self.yes_frame, text="Yes 5 价格($):", font=('Arial', 14)).grid(row=10, column=0, padx=5, pady=5)
+        ttk.Label(self.yes_frame, text="Yes 5 价格($):", font=('Arial', 12)).grid(row=10, column=0, padx=5, pady=5)
         price_entry = ttk.Entry(self.yes_frame)
         price_entry.insert(0, "0.00")  # 修改为0.00
         price_entry.grid(row=10, column=1, padx=5, pady=5, sticky="ew")
         
-        ttk.Label(self.yes_frame, text="Yes 5 金额:", font=('Arial', 14)).grid(row=11, column=0, padx=5, pady=5)
+        ttk.Label(self.yes_frame, text="Yes 5 金额:", font=('Arial', 12)).grid(row=11, column=0, padx=5, pady=5)
         amount_entry = ttk.Entry(self.yes_frame)
         amount_entry.insert(0, "0.0")
         amount_entry.grid(row=11, column=1, padx=5, pady=5, sticky="ew")
@@ -441,34 +441,34 @@ class CryptoTrader:
         self.no_frame.grid(row=0, column=1, padx=5, sticky="ew")
         config_frame.grid_columnconfigure(1, weight=1)
         
-        ttk.Label(self.no_frame, text="No 0 价格($):", font=('Arial', 14)).grid(row=0, column=0, padx=5, pady=5)
+        ttk.Label(self.no_frame, text="No 0 价格($):", font=('Arial', 12)).grid(row=0, column=0, padx=5, pady=5)
         self.no_price_entry = ttk.Entry(self.no_frame)
         self.no_price_entry.insert(0, str(self.config['trading']['No0']['target_price']))
         self.no_price_entry.grid(row=0, column=1, padx=5, pady=5, sticky="ew")
         
-        ttk.Label(self.no_frame, text="No 0 金额:", font=('Arial', 14)).grid(row=1, column=0, padx=5, pady=5)
+        ttk.Label(self.no_frame, text="No 0 金额:", font=('Arial', 12)).grid(row=1, column=0, padx=5, pady=5)
         self.no_amount_entry = ttk.Entry(self.no_frame)
         self.no_amount_entry.insert(0, str(self.config['trading']['No0']['amount']))
         self.no_amount_entry.grid(row=1, column=1, padx=5, pady=5, sticky="ew")
         
         for i in range(4):
-            ttk.Label(self.no_frame, text=f"No {i+1} 价格($):", font=('Arial', 14)).grid(row=i*2+2, column=0, padx=5, pady=5)
+            ttk.Label(self.no_frame, text=f"No {i+1} 价格($):", font=('Arial', 12)).grid(row=i*2+2, column=0, padx=5, pady=5)
             price_entry = ttk.Entry(self.no_frame)
             price_entry.insert(0, "0.00")  # 修改为0.00
             price_entry.grid(row=i*2+2, column=1, padx=5, pady=5, sticky="ew")
             
-            ttk.Label(self.no_frame, text=f"No {i+1} 金额:", font=('Arial', 14)).grid(row=i*2+3, column=0, padx=5, pady=5)
+            ttk.Label(self.no_frame, text=f"No {i+1} 金额:", font=('Arial', 12)).grid(row=i*2+3, column=0, padx=5, pady=5)
             amount_entry = ttk.Entry(self.no_frame)
             amount_entry.insert(0, "0.0")
             amount_entry.grid(row=i*2+3, column=1, padx=5, pady=5, sticky="ew")
         
         # No 5 配置
-        ttk.Label(self.no_frame, text="No 5 价格($):", font=('Arial', 14)).grid(row=10, column=0, padx=5, pady=5)
+        ttk.Label(self.no_frame, text="No 5 价格($):", font=('Arial', 12)).grid(row=10, column=0, padx=5, pady=5)
         price_entry = ttk.Entry(self.no_frame)
         price_entry.insert(0, "0.00")  # 修改为0.00
         price_entry.grid(row=10, column=1, padx=5, pady=5, sticky="ew")
         
-        ttk.Label(self.no_frame, text="No 5 金额:", font=('Arial', 14)).grid(row=11, column=0, padx=5, pady=5)
+        ttk.Label(self.no_frame, text="No 5 金额:", font=('Arial', 12)).grid(row=11, column=0, padx=5, pady=5)
         amount_entry = ttk.Entry(self.no_frame)
         amount_entry.insert(0, "0.0")
         amount_entry.grid(row=11, column=1, padx=5, pady=5, sticky="ew")
@@ -558,7 +558,6 @@ class CryptoTrader:
         # 配置列权重使按钮均匀分布
         for i in range(4):
             buy_button_frame.grid_columnconfigure(i, weight=1)
-
         # 修改卖出按钮区域
         sell_frame = ttk.LabelFrame(scrollable_frame, text="卖出按钮", padding=(10, 5))
         sell_frame.pack(fill="x", padx=10, pady=5)
@@ -690,14 +689,12 @@ class CryptoTrader:
         new_url = self.url_entry.get().strip()
         if not new_url:
             messagebox.showwarning("警告", "请输入网址")
-            return
-            
+            return  
         # 检查URL格式
         if not new_url.startswith(('http://', 'https://')):
             new_url = 'https://' + new_url
             self.url_entry.delete(0, tk.END)
             self.url_entry.insert(0, new_url)
-        
         # 启用开始按钮，启用停止按钮
         self.start_button['state'] = 'disabled'
         self.stop_button['state'] = 'normal'
@@ -715,8 +712,8 @@ class CryptoTrader:
         # 强制更新GUI
         self.root.update()
         
-        # 13秒后自动点击更新金额按钮
-        self.root.after(13000, self.update_amount_button.invoke)
+        # 8秒自动点击更新金额按钮
+        self.root.after(8000, self.update_amount_button.invoke)
         
         # 重置交易次数计数器
         self.trade_count = 0
@@ -739,7 +736,6 @@ class CryptoTrader:
                 if platform.system() == 'Linux':
                     chrome_options.add_argument('--disable-gpu')
                     chrome_options.add_argument('--disable-software-rasterizer')
-                
                 try:
                     self.driver = webdriver.Chrome(options=chrome_options)
                     self.update_status("连接到浏览器")
@@ -747,7 +743,6 @@ class CryptoTrader:
                     self.logger.error(f"连接浏览器失败: {str(e)}")
                     self._show_error_and_reset("无法连接Chrome浏览器，请确保已运行start_chrome.sh")
                     return
-            
             try:
                 # 接在当前标签页打开URL
                 self.driver.get(new_url)
@@ -777,18 +772,15 @@ class CryptoTrader:
                         self.trading_pair_label.config(text="无识别事件名称")
                 except Exception:
                     self.trading_pair_label.config(text="解析失败")
-
                 #  开启监控
                 self.running = True
                 
                 # 启动监控线程
-                threading.Thread(target=self.monitor_prices, daemon=True).start()
-                
+                threading.Thread(target=self.monitor_prices, daemon=True).start()  
             except Exception as e:
                 error_msg = f"加载网站失败: {str(e)}"
                 self.logger.error(error_msg)
-                self._show_error_and_reset(error_msg)
-                
+                self._show_error_and_reset(error_msg)   
         except Exception as e:
             error_msg = f"启动监控失败: {str(e)}"
             self.logger.error(error_msg)
@@ -848,11 +840,9 @@ class CryptoTrader:
         if current_url:
             if 'url_history' not in self.config:
                 self.config['url_history'] = []
-            
             # 如果URL存在，先移除它
             if current_url in self.config['url_history']:
                 self.config['url_history'].remove(current_url)
-            
             # 将新URL添加到列表开头
             self.config['url_history'].insert(0, current_url)
             
@@ -1014,14 +1004,12 @@ class CryptoTrader:
                     self.Sell_no()   # 添加自动卖出检查
                     
                 else:
-                    self.update_status("无法获取价格数据")
-                    
+                    self.update_status("无法获取价格数据")       
             except Exception as e:
                 self.logger.error(f"价格获取失败: {str(e)}")
                 self.update_status(f"价格获取失败: {str(e)}")
                 self.yes_price_label.config(text="Yes: 获取失败", foreground='red')
-                self.no_price_label.config(text="No: 获取失败", foreground='red')
-                
+                self.no_price_label.config(text="No: 获取失败", foreground='red')     
         except Exception as e:
             self.logger.error(f"检查价格失败: {str(e)}")
             self.update_status(f"价检查错误: {str(e)}")
@@ -1031,31 +1019,24 @@ class CryptoTrader:
         """处理 MetaMask 扩展弹窗的键盘操作"""
         try:
             # 直接等待一段时间让MetaMask扩展弹窗出现
-            time.sleep(2)  # 给扩展弹窗足够的时间显示
-            
+            time.sleep(1)  # 给扩展弹窗足够的时间显示
             # 模拟键盘操作序列
             # 1. 按6次TAB
             for _ in range(6):
                 pyautogui.press('tab')
-                # time.sleep(0.1)  # 每次按键之间添加短暂延迟
-            
+                time.sleep(0.1)  # 每次按键之间添加短暂延迟
             # 2. 按1次ENTER
             pyautogui.press('enter')
-            # time.sleep(0.1)  # 等待第一次确认响应
-            
+            time.sleep(0.1)  # 等待第一次确认响应
             # 3. 按2次TAB
             for _ in range(2):
                 pyautogui.press('tab')
-                # time.sleep(0.1)
-            
+                time.sleep(0.1)
             # 4. 按1次ENTER
             pyautogui.press('enter')
-            
             # 等待弹窗自动关闭
-            # time.sleep(0.3)
-            
+            time.sleep(0.3)
             self.logger.info("MetaMask 扩展弹窗操作完成")
-            
         except Exception as e:
             error_msg = f"处理 MetaMask 扩展弹窗失败: {str(e)}"
             self.logger.error(error_msg)
@@ -1083,9 +1064,7 @@ class CryptoTrader:
                     time_elapsed >= self.config['sell_condition']['time_limit']):
                     self.execute_sell(position)
                     break
-                
                 time.sleep(1)
-                
             except Exception as e:
                 self.logger.error(f"监控卖出条件出错: {str(e)}")
                 continue
@@ -1114,13 +1093,11 @@ class CryptoTrader:
             url = self.url_entry.get().strip()
             if not url:
                 messagebox.showwarning("告", "���入网址")
-                return
-                
+                return   
             if not url.startswith(('http://', 'https://')):
                 url = 'https://' + url
                 self.url_entry.delete(0, tk.END)
                 self.url_entry.insert(0, url)
-            
             self.update_status(f"正在测试网址: {url}")
             
             # 使用已的浏览器实例
@@ -1137,7 +1114,6 @@ class CryptoTrader:
                     self.logger.error(f"连接浏览器失败: {str(e)}")
                     messagebox.showerror("错误", "无法连接到Chrome浏览器，请确保已运行start_chrome.sh")
                     return
-            
             try:
                 # 在当标打开
                 self.driver.get(url)
@@ -1155,7 +1131,6 @@ class CryptoTrader:
                 self.update_status(f"当前URL: {current_url}")
                 
                 messagebox.showinfo("成功", f"网址以正常访问！\n页标题: {page_title}")
-                
             except Exception as e:
                 error_msg = str(e)
                 if "timeout" in error_msg.lower():
@@ -1178,8 +1153,7 @@ class CryptoTrader:
         try:
             if not self.driver:
                 messagebox.showwarning("警告", "请先连接浏览器")
-                return
-                
+                return   
             # 获取完整的HTML
             html = self.driver.page_source
             
@@ -1188,11 +1162,9 @@ class CryptoTrader:
             filename = f'page_source_{timestamp}.html'
             
             with open(filename, 'w', encoding='utf-8') as f:
-                f.write(html)
-                
+                f.write(html)   
             self.update_status(f"HTML结构��导出到: {filename}")
-            messagebox.showinfo("成功", f"HTML已保存到: {filename}")
-            
+            messagebox.showinfo("成功", f"HTML已保存到: {filename}")   
         except Exception as e:
             error_msg = f"导出HTML败: {str(e)}"
             self.logger.error(error_msg)
@@ -1210,8 +1182,7 @@ class CryptoTrader:
         try:
             if not self.driver:
                 self.update_status("请先连接浏览器")
-                return
-                
+                return  
             # 等待页面加载完成
             WebDriverWait(self.driver, 10).until(
                 lambda driver: driver.execute_script('return document.readyState') == 'complete'
@@ -1291,7 +1262,6 @@ class CryptoTrader:
                     EC.element_to_be_clickable((By.XPATH, 
                         '(//button[@class="c-gBrBnR c-gBrBnR-iifsICY-css"])'))
                 )
-            
             # 执行点击
             self.driver.execute_script("arguments[0].click();", button)
             self.update_status("已点击 Positions-Sell-No 按钮")
@@ -1307,12 +1277,10 @@ class CryptoTrader:
             if not self.driver:
                 self.update_status("请先连接浏览器")
                 return
-            
             # 等待页面加载完成
             WebDriverWait(self.driver, 10).until(
                 lambda driver: driver.execute_script('return document.readyState') == 'complete'
             )
-            
             position_value = None
             try:
                 # 尝试��取第二行NO的标签值，如果不存在会直接进入except块
@@ -1322,8 +1290,7 @@ class CryptoTrader:
                 )# //div[@class="c-dhzjXW c-chKWaB c-chKWaB-eVTycx-color-green c-dhzjXW-ibxvuTL-css" and text()="No"]
             except:
                 # 如果获取第二行失败，不报错，继续执行
-                pass
-                
+                pass   
             # 根据position_value的值决定点击哪个按钮
             if position_value == "No":
                 # 如果第二行是No，点击第一行YES 的 SELL的按钮
@@ -1337,11 +1304,9 @@ class CryptoTrader:
                     EC.element_to_be_clickable((By.XPATH, 
                         '(//button[@class="c-gBrBnR c-gBrBnR-iifsICY-css"])'))
                 )
-            
             # 执行点击
             self.driver.execute_script("arguments[0].click();", button)
-            self.update_status("已点击 Positions-Sell-Yes 按钮")
-            
+            self.update_status("已点击 Positions-Sell-Yes 按钮")   
         except Exception as e:
             error_msg = f"点击 Positions-Sell-Yes 按钮失败: {str(e)}"
             self.logger.error(error_msg)
@@ -1353,7 +1318,6 @@ class CryptoTrader:
             if not self.driver:
                 self.update_status("请先连接浏览器")
                 return
-            
             # 点击Sell-卖出按钮
             button = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((By.XPATH, 
@@ -1372,8 +1336,7 @@ class CryptoTrader:
             # 等待交易完成
             time.sleep(3)
             self.driver.refresh()
-            self.update_status("交易完成并刷新页面")
-            
+            self.update_status("交易完成并刷新页面")    
         except Exception as e:
             error_msg = f"卖出盈利操作失败: {str(e)}"
             self.logger.error(error_msg)
@@ -1411,13 +1374,11 @@ class CryptoTrader:
                 
                 # 新最后更新间
                 current_time = datetime.now().strftime('%H:%M:%S')
-                self.balance_update_label.config(text=f"最后更新: {current_time}")
-                
+                self.balance_update_label.config(text=f"最后更新: {current_time}")   
             except Exception as e:
                 self.logger.error(f"获取金信息失败: {str(e)}")
                 self.portfolio_label.config(text="Portfolio: 获取失败")
-                self.cash_label.config(text="Cash: 获取失败")
-                
+                self.cash_label.config(text="Cash: 获取失败")    
         except Exception as e:
             self.logger.error(f"检查资金失败: {str(e)}")
             self.update_status(f"资金检查错误: {str(e)}")
@@ -1428,7 +1389,6 @@ class CryptoTrader:
             if not self.driver:
                 self.update_status("请先连接浏览器")
                 return
-            
             button = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((By.XPATH, '//*[@id="event-layout-with-side-nav"]/div[2]/div/div[1]/div/div[1]/div/div/div[1]'))
             )# //div[@class="c-dhzjXW c-gvfudb c-gvfudb-bQykhQ-isSelected-true"]
@@ -1445,7 +1405,6 @@ class CryptoTrader:
             if not self.driver:
                 self.update_status("请先连接浏览器")
                 return
-            
             button = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((By.XPATH, '//*[@id="event-layout-with-side-nav"]/div[2]/div/div[1]/div/div[1]/div/div/div[2]'))
             )#//div[@class="c-dhzjXW c-gvfudb"]
@@ -1462,7 +1421,6 @@ class CryptoTrader:
             if not self.driver:
                 self.update_status("请先连接浏器")
                 return
-            
             button = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((By.XPATH, '//*[@id="event-layout-with-side-nav"]/div[2]/div/div[1]/div/div[2]/div[1]/div[2]/div/div[1]/div'))
             )# //div[@class="c-dhzjXW c-dhzjXW-iiUtrmZ-css"]
@@ -1479,7 +1437,6 @@ class CryptoTrader:
             if not self.driver:
                 self.update_status("请先连接浏器")
                 return
-            
             button = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((By.XPATH, 
                     '//*[@id="event-layout-with-side-nav"]/div[2]/div/div[1]/div/div[2]/div[1]/div[2]/div/div[2]/div'))
@@ -1496,7 +1453,6 @@ class CryptoTrader:
             if not self.driver:
                 self.update_status("请先连接浏览器")
                 return
-            
             button = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((By.XPATH, 
                     '//*[@id="event-layout-with-side-nav"]/div[2]/div/div[1]/div/div[2]/div[1]/div[2]/div[1]/div[1]/div'))
@@ -1513,7 +1469,6 @@ class CryptoTrader:
             if not self.driver:
                 self.update_status("请先连接浏览器")
                 return
-            
             button = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((By.XPATH, 
                     '//*[@id="event-layout-with-side-nav"]/div[2]/div/div[1]/div/div[2]/div[1]/div[2]/div[1]/div[2]/div'))
@@ -1530,7 +1485,6 @@ class CryptoTrader:
             if not self.driver:
                 self.update_status("请���连接浏览器")
                 return
-            
             button = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((By.XPATH, 
                     '//*[@id="__pm_layout"]/div/div[2]/div/div[1]/div/div[2]/div[2]/div[1]/div[2]'))
@@ -1547,7 +1501,6 @@ class CryptoTrader:
             if not self.driver:
                 self.update_status("请先连接浏览器")
                 return
-            
             button = WebDriverWait(self.driver, 10).until(
                 EC.element_to_be_clickable((By.XPATH, 
                     '//*[@id="__pm_layout"]/div/div[2]/div/div[1]/div/div[2]/div[2]/div[1]/div[2]'))
@@ -1564,7 +1517,6 @@ class CryptoTrader:
             if not self.driver:
                 self.update_status("请先连接浏览器")
                 return
-            
             # 获取触发事件的按钮
             button = event.widget if event else self.amount_button
             button_text = button.cget("text")
@@ -1615,12 +1567,10 @@ class CryptoTrader:
                 amount = no5_amount_entry.get()
             else:
                 amount = "0.0"
-            
             # 输入金额
             amount_input.send_keys(str(amount))
             
-            self.update_status(f"已在Amount输入框输入: {amount}")
-            
+            self.update_status(f"已在Amount输入框输入: {amount}")   
         except Exception as e:
             self.logger.error(f"Amount操作失败: {str(e)}")
             self.update_status(f"Amount操作失败: {str(e)}")
@@ -1629,8 +1579,7 @@ class CryptoTrader:
         """处理Yes0/No0的自动交易"""
         try:
             if not self.driver:
-                raise Exception("浏览器连接丢失")
-                
+                raise Exception("浏览器连接丢失")    
             # 获取当前Yes和No价格
             prices = self.driver.execute_script("""
                 function getPrices() {
@@ -1664,7 +1613,6 @@ class CryptoTrader:
                 # 检查Yes0价格匹配
                 if abs(yes0_target - yes_price) < 0.0001 and yes0_target > 0:
                     self.logger.info("Yes 0价格匹配，执行自动交易")
-                    
                     # 执行现有的交易操作
                     self.amount_button.event_generate('<Button-1>')
                     time.sleep(0.5)
@@ -1694,11 +1642,6 @@ class CryptoTrader:
                         amount=float(self.yes_amount_entry.get()),
                         trade_count=self.trade_count
                     )
-                    # 再次刷新页面
-                    self.driver.refresh()
-                    time.sleep(3)
-                    # 买了 YES 后也要刷新页面
-                    self.driver.refresh()
 
                     # 重置Yes0和No0价格为0.00
                     self.yes_price_entry.delete(0, tk.END)
@@ -1754,10 +1697,6 @@ class CryptoTrader:
                         amount=float(self.no_amount_entry.get()),
                         trade_count=self.trade_count
                     )
-                    
-                    # 买了 NO 后要刷新页面
-                    time.sleep(1)
-                    self.driver.refresh()
                     # 重置Yes0和No0价格为0.00
                     self.yes_price_entry.delete(0, tk.END)
                     self.yes_price_entry.insert(0, "0.00")
@@ -1776,9 +1715,7 @@ class CryptoTrader:
                     no6_price_entry.delete(0, tk.END)
                     no6_price_entry.insert(0, "0.85")
                     # 增加等待 3秒
-                    time.sleep(1)
-                   
-                
+                    time.sleep(1)     
         except ValueError as e:
             self.logger.error(f"价格转换错误: {str(e)}")
         except Exception as e:
@@ -1789,8 +1726,7 @@ class CryptoTrader:
         """处理Yes1/No1的自动交易"""
         try:
             if not self.driver:
-                raise Exception("浏览器连接丢失")
-                
+                raise Exception("浏览器连接丢失")   
             # 获取当前Yes和No价格
             prices = self.driver.execute_script("""
                 function getPrices() {
@@ -1846,7 +1782,7 @@ class CryptoTrader:
                     # 等待3秒
                     time.sleep(3)
                     self.driver.refresh()
-                    # 买了 YES 后也要刷新页面
+                    
                     # 重置Yes1和No1价格为0.00
                     yes1_price_entry.delete(0, tk.END)
                     yes1_price_entry.insert(0, "0.00")
@@ -1866,8 +1802,7 @@ class CryptoTrader:
                         price=yes_price,
                         amount=float(yes1_price_entry.get()),
                         trade_count=self.trade_count
-                    )
-                    
+                    )   
                 # 检查No1价格匹配
                 elif abs(no1_target - no_price) < 0.0001 and no1_target > 0:
                     self.logger.info("No 1价格匹配，执行自动交易")
@@ -2120,10 +2055,22 @@ class CryptoTrader:
                     no3_price_entry.delete(0, tk.END)
                     no3_price_entry.insert(0, "0.00")
                     
-                    # 设置No4价格为0.55
+                    # 设置No4价格为0.00
                     no4_price_entry = self.no_frame.grid_slaves(row=8, column=1)[0]
                     no4_price_entry.delete(0, tk.END)
-                    no4_price_entry.insert(0, "0.55")
+                    no4_price_entry.insert(0, "0.00")
+
+                    """当买了 4 次后预防第 5 次反水，所以价格到了 50 时就平仓，然后再自动开"""
+                    yes6_price_entry = self.yes_frame.grid_slaves(row=12, column=1)[0]
+                    yes6_price_entry.delete(0, tk.END)
+                    yes6_price_entry.insert(0, "0.85")
+                    no6_price_entry = self.no_frame.grid_slaves(row=12, column=1)[0]
+                    no6_price_entry.delete(0, tk.END)
+                    no6_price_entry.insert(0, "0.5")
+
+                    # 增加等待 1秒
+                    time.sleep(1)
+
                     # 增加交易次数
                     self.trade_count += 1
                     # 发送交易邮件
@@ -2145,7 +2092,7 @@ class CryptoTrader:
                     self.buy_confirm_button.invoke()
                     time.sleep(1)
                     self._handle_metamask_popup()
-                    """因为网站的��因，��须刷新多次页面，否则会报错，故不能删除或者合并以下等待和刷新代码"""
+                    """因为网站的原因，必须刷新多次页面，否则会报错，故不能删除或者合并以下等待和刷新代码"""
                     # 等待6秒
                     time.sleep(6)
                     self.driver.refresh()
@@ -2165,10 +2112,18 @@ class CryptoTrader:
                     no3_price_entry.delete(0, tk.END)
                     no3_price_entry.insert(0, "0.00")
                     
-                    # 设置Yes4价格为0.55
+                    # 设置Yes4价格为0.00
                     yes4_price_entry = self.yes_frame.grid_slaves(row=8, column=1)[0]
                     yes4_price_entry.delete(0, tk.END)
-                    yes4_price_entry.insert(0, "0.55")
+                    yes4_price_entry.insert(0, "0.00")
+
+                    """当买了 4 次后预防第 5 次反水，所以价格到了 50 时就平仓，然后再自动开"""
+                    yes6_price_entry = self.yes_frame.grid_slaves(row=12, column=1)[0]
+                    yes6_price_entry.delete(0, tk.END)
+                    yes6_price_entry.insert(0, "0.5")
+                    no6_price_entry = self.no_frame.grid_slaves(row=12, column=1)[0]
+                    no6_price_entry.delete(0, tk.END)
+                    no6_price_entry.insert(0, "0.85")
                     
                     # 增加交易次数
                     self.trade_count += 1
@@ -2267,7 +2222,7 @@ class CryptoTrader:
                     )
                 # 检查No4价格匹配
                 elif abs(no4_target - no_price) < 0.0001 and no4_target > 0:
-                    self.logger.info("No 4价格匹��，执行自动交易")
+                    self.logger.info("No 4价格匹配，执行自动交易")
                     
                     # 执行交易操作
                     self.buy_no_button.invoke()
@@ -2440,8 +2395,7 @@ class CryptoTrader:
         """当Yes6价格等于实时Yes价格时自动卖出"""
         try:
             if not self.driver:
-                raise Exception("浏览器连接丢失")
-                
+                raise Exception("浏览器连接丢失")  
             # 获取当前Yes价格
             prices = self.driver.execute_script("""
                 function getPrices() {
@@ -2477,20 +2431,8 @@ class CryptoTrader:
                     time.sleep(0.5)
                     # 点击Sell-卖出按钮
                     self.sell_profit_button.invoke()
-                    # 等待20秒
-                    """因为网站的原因，必须刷新多次页面，否则会报错，故不能删除或者合并以下等待和刷新代码"""
-                    # 等待6秒
-                    time.sleep(6)
-                    self.driver.refresh()
                     # 等待3秒
                     time.sleep(3)
-                    self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
-                    self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
-                    self.driver.refresh()
                     # 发送交易邮件 - 卖出YES
                     self.send_trade_email(
                         trade_type="Sell Yes Final",
@@ -2498,7 +2440,19 @@ class CryptoTrader:
                         amount=0.0,  # 卖出时金额为总持仓
                         trade_count=7
                     )
-                    # 刷新页面
+                    
+                    """因为网站的原因，必须刷新多次页面，否则会报错，故不能删除或者合并以下等待和刷新代码"""
+                    # 等待3秒
+                    time.sleep(3)
+                    self.driver.refresh()
+                    # 等待3秒
+                    time.sleep(3)
+                    self.driver.refresh()
+                    # 等待3秒
+                    time.sleep(3)
+                    self.driver.refresh()
+                    # 等待3秒
+                    time.sleep(3)
                     self.driver.refresh()
 
                     # 卖出了 YES 后卖 NO 点击Positions-Sell-No按钮
@@ -2508,6 +2462,12 @@ class CryptoTrader:
                     self.sell_profit_button.invoke()
                     # 等待3秒
                     time.sleep(3)
+                    self.send_trade_email(
+                        trade_type="Sell No Final",
+                        price=0.00,
+                        amount=0.00,  # 卖出时金额为总持仓
+                        trade_count=7
+                    )
 
                     # 将Yes6和No6价格设置为0.00 
                     yes6_price_entry.delete(0, tk.END)
@@ -2515,24 +2475,23 @@ class CryptoTrader:
                     no6_price_entry.delete(0, tk.END)
                     no6_price_entry.insert(0, "0.00")
                     
-                    # 等待10秒
-                    time.sleep(10)
+                    # 停止监控
                     self.stop_button.invoke()
-                    # 刷新页面
-                    self.driver.refresh()
-                    # 发送交易邮件 - 卖出NO
-                    self.send_trade_email(
-                        trade_type="Sell No Final",
-                        price=0.0,
-                        amount=0.0,  # 卖出时金额为总持仓
-                        trade_count=8
-                    )
+                    # 等待状态更新
+                    time.sleep(3)
+                    # 启动新的监控
+                    self.start_button.invoke()
+                    # 设置新的价格并重启监控
+                    self.yes_price_entry.delete(0, tk.END)
+                    self.yes_price_entry.insert(0, "0.55")
+                    self.no_price_entry.delete(0, tk.END)
+                    self.no_price_entry.insert(0, "0.55")     
         except Exception as e:
             self.logger.error(f"Sell_yes执行失败: {str(e)}")
             self.update_status(f"Sell_yes执行失败: {str(e)}")
 
     def Sell_no(self):
-        """当No6价格等于实时No价格时自动卖出，也就是设定的 0.88 价格触发时卖出 NO"""
+        """当No6价格等于实时No价格时自动卖出"""
         try:
             if not self.driver:
                 raise Exception("浏览器连接丢失")
@@ -2565,21 +2524,31 @@ class CryptoTrader:
                 
                 # 检查No6价格匹配
                 if abs(no6_target - no_price) < 0.0001 and no6_target > 0:
-                    self.logger.info("No6价格匹配,执行自动卖出")
+                    self.logger.info("No6价格匹配，执行自动卖出")
                     
                     # 点击Positions-Sell-No按钮
                     self.position_sell_no_button.invoke()
                     time.sleep(0.5)
                     # 点击Sell-卖出按钮
                     self.sell_profit_button.invoke()
-                    """因为网站的原因，必须刷新多次页面，否则会报错，故不能删除或者合并以下等待和刷新代码"""
-                    # 等待6秒
-                    time.sleep(6)
-                    self.driver.refresh()
                     # 等待3秒
                     time.sleep(3)
+                    # 发送交易邮件 - 卖出NO
+                    self.send_trade_email(
+                        trade_type="Sell No Final",
+                        price=no_price,
+                        amount=0.0,  # 卖出时金额为总持仓
+                        trade_count=7
+                    )
+
+                    """因为网站的原因，必须刷新多次页面，否则会报错，故不能删除或者合并以下等待和刷新代码"""
+                    # 等待1秒
+                    time.sleep(1)
                     self.driver.refresh()
-                    # 等待3秒
+                    # 等待1秒
+                    time.sleep(3)
+                    self.driver.refresh()
+                    # 等待1秒
                     time.sleep(3)
                     self.driver.refresh()
                     # 等待3秒
@@ -2591,37 +2560,35 @@ class CryptoTrader:
                     time.sleep(1)
                     # 点击Sell-卖出按钮
                     self.sell_profit_button.invoke()
-                    # 等待10秒
-                    time.sleep(4)
+                    # 等待3秒
+                    time.sleep(3)
                     # 刷新页面
                     self.driver.refresh()
-
-                    # 发送交易邮件 - 卖出NO
-                    self.send_trade_email(
-                        trade_type="Sell No Final",
-                        price=no_price,
-                        amount=0.0,  # 卖出时金额为总持仓
-                        trade_count=7
-                    )
 
                     # 将Yes6和No6价格设置为0.00
                     yes6_price_entry.delete(0, tk.END)
                     yes6_price_entry.insert(0, "0.00")
                     no6_price_entry.delete(0, tk.END) 
                     no6_price_entry.insert(0, "0.00")
-                    
-                   # 等待10 秒
-                    time.sleep(10)
-                    self.stop_button.invoke()
-                    
                     # 发送交易邮件 - 卖出YES
                     self.send_trade_email(
                         trade_type="Sell Yes Final",
-                        price=0.0,
-                        amount=0.0,  # 卖出时金额为总持仓
+                        price=0.00,
+                        amount=0.00,  # 卖出时金额为总持仓
                         trade_count=8
-                    )
+                    )         
+                   # 等待1秒
+                    time.sleep(1)
+                    self.stop_button.invoke()
                     
+                    time.sleep(3)
+                    # 启动新的监控
+                    self.start_button.invoke()
+                    # 设置新的价格并重启监控
+                    self.yes_price_entry.delete(0, tk.END)
+                    self.yes_price_entry.insert(0, "0.55")
+                    self.no_price_entry.delete(0, tk.END)
+                    self.no_price_entry.insert(0, "0.55")
         except Exception as e:
             self.logger.error(f"Sell_no执行失败: {str(e)}")
             self.update_status(f"Sell_no执行失败: {str(e)}")
