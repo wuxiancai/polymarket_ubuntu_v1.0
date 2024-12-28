@@ -1523,11 +1523,11 @@ class CryptoTrader:
                     # 等待6秒
                     time.sleep(6)
                     self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(4)
+                    # 等待5秒
+                    time.sleep(5)
                     self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(4)
+                    # 等待5秒
+                    time.sleep(5)
                     self.driver.refresh()
                     
                     # 增加交易次数
@@ -1576,15 +1576,13 @@ class CryptoTrader:
                     # 等待6秒
                     time.sleep(6)
                     self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
+                    # 等待5秒
+                    time.sleep(5)
                     self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
+                    # 等待5秒
+                    time.sleep(5)
                     self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
-                    self.driver.refresh()
+                    
                     # 增加交易次数
                     self.trade_count += 1
                     # 发送交易邮件
@@ -1611,7 +1609,7 @@ class CryptoTrader:
                     no6_price_entry = self.no_frame.grid_slaves(row=12, column=1)[0]
                     no6_price_entry.delete(0, tk.END)
                     no6_price_entry.insert(0, "0.95")
-                    # 增加等待 3秒
+                    # 增加等待1秒
                     time.sleep(1)     
         except ValueError as e:
             self.logger.error(f"价格转换错误: {str(e)}")
@@ -1670,14 +1668,11 @@ class CryptoTrader:
                     # 等待6秒
                     time.sleep(6)
                     self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
+                    # 等待5秒
+                    time.sleep(5)
                     self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
-                    self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
+                    # 等待5秒
+                    time.sleep(5)
                     self.driver.refresh()
                     
                     # 重置Yes1和No1价格为0.00
@@ -1716,14 +1711,11 @@ class CryptoTrader:
                     # 等待6秒
                     time.sleep(6)
                     self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
+                    # 等待5秒
+                    time.sleep(5)
                     self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
-                    self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
+                    # 等待5秒
+                    time.sleep(5)
                     self.driver.refresh()
 
                     # 重置Yes1和No1价格为0.00
@@ -1804,14 +1796,11 @@ class CryptoTrader:
                     # 等待6秒
                     time.sleep(6)
                     self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
+                    # 等待5秒
+                    time.sleep(5)
                     self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
-                    self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
+                    # 等待5秒
+                    time.sleep(5)
                     self.driver.refresh()
                     
                     # 重置Yes2和No2价格为0.00
@@ -1849,14 +1838,11 @@ class CryptoTrader:
                     # 等待6秒
                     time.sleep(6)
                     self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
+                    # 等待5秒
+                    time.sleep(5)
                     self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
-                    self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
+                    # 等待5秒
+                    time.sleep(5)
                     self.driver.refresh()
                     
                     # 重置Yes2和No2价格为0.00
@@ -1936,14 +1922,11 @@ class CryptoTrader:
                     # 等待6秒
                     time.sleep(6)
                     self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
+                    # 等待5秒
+                    time.sleep(5)
                     self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
-                    self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
+                    # 等待5秒
+                    time.sleep(5)
                     self.driver.refresh()
                     
                     # 重置Yes3和No3价格为0.00
@@ -1993,14 +1976,11 @@ class CryptoTrader:
                     # 等待6秒
                     time.sleep(6)
                     self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
+                    # 等待5秒
+                    time.sleep(5)
                     self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
-                    self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
+                    # 等待5秒
+                    time.sleep(5)
                     self.driver.refresh()
                    
                     # 重置Yes3和No3价格为0.00
@@ -2339,17 +2319,17 @@ class CryptoTrader:
                     )
                     
                     """因为网站的原因，必须刷新多次页面，否则会报错，故不能删除或者合并以下等待和刷新代码"""
-                    # 等待3秒
-                    time.sleep(3)
+                    # 等待1秒
+                    time.sleep(1)
                     self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
+                    # 等待4秒
+                    time.sleep(4)
                     self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
+                    # 等待4秒
+                    time.sleep(4)
                     self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
+                    # 等待4秒
+                    time.sleep(4)
                     self.driver.refresh()
 
                     # 卖出了 YES 后卖 NO 点击Positions-Sell-No按钮
@@ -2463,14 +2443,14 @@ class CryptoTrader:
                     # 等待1秒
                     time.sleep(1)
                     self.driver.refresh()
-                    # 等待1秒
-                    time.sleep(3)
+                    # 等待4秒
+                    time.sleep(4)
                     self.driver.refresh()
-                    # 等待1秒
-                    time.sleep(3)
+                    # 等待4秒
+                    time.sleep(4)
                     self.driver.refresh()
-                    # 等待3秒
-                    time.sleep(3)
+                    # 等待4秒
+                    time.sleep(4)
                     self.driver.refresh()
 
                     # 卖完 NO 后卖 YES点击Positions-Sell-Yes按钮
@@ -2547,13 +2527,13 @@ class CryptoTrader:
             
             self.logger.info(f"准备发送邮件: {trade_type}")
             
-            # 创建���件对象
+            # 创建邮件对象
             msg = MIMEMultipart()
             
             # 获取当前时间
             current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             
-            # 设��邮件主题
+            # 设置邮件主题
             subject = f'polymarket自动交易详情 {current_time}'
             msg['Subject'] = Header(subject, 'utf-8')
             
